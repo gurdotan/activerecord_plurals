@@ -25,8 +25,10 @@ These issues will be fixed in the next release.
 
 
 ### Testing Notes
+ * To run the tests:
+    cd <RAILS_ROOT>/vendor/plugins/activerecord_plurals
+    rake
  * The tests are written in rspec and make use of a private SQLite3 DB file.  This is why you will need to run `bundle install` in order to run the tests.  Bundler will install the sqlite3-ruby gem which is a dependency of the tests.
- * To run the tests from Rails root:  rspec vendor/plugins/activerecord_plurals/spec/activerecord_plurals_spec.rb
  * Tested only on Rails 3.
 
 Knock yourselves out!
