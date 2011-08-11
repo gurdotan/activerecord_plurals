@@ -15,6 +15,15 @@ class << ActiveRecord::Base
     end
   end
 
+
+  alias_method :singular_respond_to?, :respond_to?
+
+  def respond_to?(*args)
+    return true if singular_respond_to?(*args)
+    singular_method_id = args[0].to_s.singularize.to_sym
+    instance_methods.include?(singular_method_id)
+  end
+
 end
 
 
@@ -28,12 +37,22 @@ end
 # Diary.entries will invoke the underlying Object#entries method.  This is 
 # undesired behavior and it is up to the developer to wisely avoid these cases. 
 class Array
+  
   def method_missing(method_id, *args, &block)
-
     singular_method_id = method_id.to_s.singularize.to_sym
     if method_id != singular_method_id
       return self.map(&singular_method_id) 
     end
     super
   end
+
+  # Respond also to methods on arrays of ActiveRecord instances.
+  # Note: There is intentionally no restriction on the uniformity of instances in the array,
+  # i.e. they don't have to all be of the same class.  This is useful when you have a mixed array
+  # with objects that share the same attributes (Dog, Labrador < Dog for example) and follows ruby's
+  # duck-typing conventions.
+  def respond_to?(symbol, include_private=false)
+    super or all?{|e| e.is_a?(ActiveRecord::Base) && e.class.respond_to?(symbol)}
+  end
+
 end
