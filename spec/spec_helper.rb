@@ -20,7 +20,7 @@ def setup_schema
   # Load the testing schema
   ActiveRecord::Base.establish_connection(:adapter => "sqlite3", :database => SCHEMA_FILE)
   load(File.dirname(__FILE__) + "/schema.rb")
-  require File.dirname(__FILE__) + '/../init'
+  require File.dirname(__FILE__) + '/../rails/init'
 end
 
 def teardown_schema

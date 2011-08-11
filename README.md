@@ -2,7 +2,12 @@
 A simple rails plugin for batch-retrieving specific fields of activerecord models.
 
 ## Installation
+As rails plugin:
 `rails plugin install git://github.com/gurdotan/activerecord_plurals.git`
+
+As a gem:
+Add `gem "activerecord_plurals"` to your Gemfile and run `bundle install`.
+
 
 ## Usage
 For example, assume we have a table of animals, assocsiated to the `Animal` ActiveRecord model.  We can do the following:
