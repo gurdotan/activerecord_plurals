@@ -1,11 +1,11 @@
 # Activerecord Plurals
+A simple rails plugin for batch-retrieving specific fields of activerecord models.
 
 ## Installation
 `rails plugin install git://github.com/gurdotan/activerecord_plurals.git`
 
 ## Usage
-A simple rails plugin for batch-retrieving specific fields of activerecord models.
-For example, assume we have a table of animals, assocsiated to the `Animal` ActiveRecord model.  So we can do the following:
+For example, assume we have a table of animals, assocsiated to the `Animal` ActiveRecord model.  We can do the following:
 
     >> Animal.names
     => ["Horse", "Cat", "Dog", "Chimpanzee", "Snake"]
@@ -16,11 +16,10 @@ For example, assume we have a table of animals, assocsiated to the `Animal` Acti
     >> Animal.where(:type => "domestic").names
     => ["Cat", "Dog"]
 
-So in fact this plugin supplies you with plural methods for all activerecord fields.  That includes `ids`, `created_ats` and `updated_ats`
+So in fact this plugin supplies you with plural methods for all activerecord fields.  That includes all of the model's fields, along with `ids`, `created_ats` and `updated_ats`.
 
 ### Known Issues
  * If you have an activerecord model with a field who's plural form collides with an already exsiting method (say 'entry' collides with `Object#entries`), you won't be able to invoke a plural method, the original method will be called.
- * `ActiveRecord::Base#respond_to` doesn't acknowledge the plural methods.
 
 These issues will be fixed in the next release.
 
