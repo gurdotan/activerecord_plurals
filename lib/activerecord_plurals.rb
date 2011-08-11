@@ -18,6 +18,7 @@ class << ActiveRecord::Base
 
   alias_method :singular_respond_to?, :respond_to?
 
+  # Respond to all plurals methods as well
   def respond_to?(*args)
     return true if singular_respond_to?(*args)
     singular_method_id = args[0].to_s.singularize.to_sym
